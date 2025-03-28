@@ -1,0 +1,15 @@
+@import url('../ui/reset.css');
+@import url('../ui/header.css');
+@import url('../ui/main.css');
+/* @import url('../ui/footer.css'); */
+
+:root {
+    --bg-color: rgb(33,37,41);
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: Verdana, Tahoma, sans-serif;
+    color: white;
+}
+
