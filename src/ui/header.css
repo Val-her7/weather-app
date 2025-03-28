@@ -1,0 +1,38 @@
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#cityInput {
+    background-color: rgb(	42, 43, 45);
+    padding: 0.5rem;
+    border: 1px solid white;
+    font-size: 1rem;
+    border-radius: 25px;
+    color: white;
+}
+
+#citySelect {
+    display: none;
+}
+
+#searchCityButton {
+    visibility: hidden;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#currentLocationButton {
+    border: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: rgb(255, 195, 0);
+}
