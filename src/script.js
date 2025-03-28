@@ -1,6 +1,7 @@
 import { SELECT } from "./components/constants.js";
 import { fetchCitySuggestions } from "./components/suggestion.js";
 import { getCoordonates, fetchApiWeahter } from "./components/api.js";
+import { displayWeatherForecast } from "./components/display.js";
 
 //Handle of input suggestions
 const INPUT = document.getElementById("cityInput");
@@ -38,5 +39,6 @@ BUTTON.addEventListener("click", async() => {
     let lat = coordinates.lat;
     let lon = coordinates.lon;
     let weather = await fetchApiWeahter(lat, lon);
-    console.log(weather);
+    displayWeatherForecast(weather);
+    
 })
