@@ -1,0 +1,16 @@
+.all-days {
+    border: 1px solid white;
+    padding: 10px;
+}
+
+.weather {
+    width: 100%;
+    background-color: rgb(	42, 43, 45);
+    border: none;
+}
+
+.hourly-forecast {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
