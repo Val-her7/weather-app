@@ -47,5 +47,12 @@
 }
 
 .focus {
-    border-bottom: 3px solid rgb(255, 195, 0);
+    border-bottom: 3px solid var(--theme-color);
+    & .fa-solid.fa-location-dot {
+        color: var(--theme-color);
+    }
+}
+
+.date {
+    padding: 10px;
 }

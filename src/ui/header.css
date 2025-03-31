@@ -1,15 +1,22 @@
 header {
     position: sticky;
     top: 0;
+    background-color: var(--bg-color);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 15px;
+    padding: 15px 10px;
+}
+
+h1 span {
+    color: var(--theme-color);
 }
 
 #cityInput {
     background-color: rgb(	42, 43, 45);
     padding: 0.5rem;
-    border: 1px solid white;
+    border: none;
     font-size: 1rem;
     border-radius: 25px;
     color: white;
@@ -26,6 +33,7 @@ header {
     font-size: 1rem;
     border-radius: 25px;
     cursor: pointer;
+    background-color: var(--theme-color);
 }
 
 #currentLocationButton {
@@ -34,5 +42,5 @@ header {
     font-size: 1rem;
     border-radius: 25px;
     cursor: pointer;
-    background-color: rgb(255, 195, 0);
+    background-color: var(--theme-color);
 }

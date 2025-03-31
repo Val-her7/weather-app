@@ -44,6 +44,10 @@ BUTTON.addEventListener("click", async() => {
     let lon = coordinates.lon;
     let weather = await fetchApiWeahter(lat, lon);
 
+    for( let city of LOCATION.children) {
+        if(city.id === `${weather.city.coord.lat}-${weather.city.coord.lon}`) return;
+    }
+    
     let location = document.getElementsByClassName("focus")[0];
     location.classList.replace("focus", "unfocus");
     document.getElementsByClassName(`${location.id}`)[0].style.display = "none";

@@ -5,14 +5,14 @@ export function displayWeatherForecast(weather) {
 
     let locations = document.getElementsByClassName("locations")[0];
     let location = document.createElement("span");
-    location.id = (weather.city.name).replace(/ /g, "-");
+    location.id = `${weather.city.coord.lat}-${weather.city.coord.lon}`;
     location.classList.add("focus");
-    location.innerHTML = `<p><i class="fa-solid fa-location-dot"></i> ${weather.city.name}</p>`;
+    location.innerHTML = `<p><i class="fa-solid fa-location-dot"></i> ${weather.city.name}, ${weather.city.country}</p>`;
     locations.prepend(location);
 
     let cities = document.getElementsByClassName("cities")[0];
     let allDay = document.createElement("div");
-    allDay.classList.add("all-days", `${weather.city.name.replace(/ /g, "-")}`);
+    allDay.classList.add("all-days", `${weather.city.coord.lat}-${weather.city.coord.lon}`);
     cities.prepend(allDay);
 
     for(let i of weather.list){
@@ -20,11 +20,11 @@ export function displayWeatherForecast(weather) {
         let localeTime = new Date(UtcTime.getTime() + weather.city.timezone * 1000);
         if(localeTime.getDate() !== save[0]){
             save.unshift(localeTime.getDate()); 
-            let allDays = document.getElementsByClassName(`${weather.city.name.replace(/ /g, "-")}`)[0];
+            let allDays = document.getElementsByClassName(`${weather.city.coord.lat}-${weather.city.coord.lon}`)[0];
             let day = document.createElement("div");
             day.classList.add(`weather`);
             day.innerHTML = `
-                <p><i class="fa-solid fa-calendar-days"></i>${weekdays[localeTime.getDay()]}, ${localeTime.getDate()}, ${months[localeTime.getMonth()]}, ${localeTime.getFullYear()}</p>
+                <p class="date"><i class="fa-solid fa-calendar-days"></i> ${weekdays[localeTime.getDay()]}, ${localeTime.getDate()}, ${months[localeTime.getMonth()]}, ${localeTime.getFullYear()}</p>
                 <div class="hourly-forecast">
                 <div class="card">
                     <p>${localeTime.getHours() < 10 ? `0${localeTime.getHours()}:00` : `${localeTime.getHours()}:00`}</p>
@@ -35,7 +35,7 @@ export function displayWeatherForecast(weather) {
                 </div>`
             allDays.appendChild(day);      
         }  else {
-            let hourlyForecast = document.getElementsByClassName(`${weather.city.name.replace(/ /g, "-")}`)[0].lastElementChild.lastElementChild;
+            let hourlyForecast = document.getElementsByClassName(`${weather.city.coord.lat}-${weather.city.coord.lon}`)[0].lastElementChild.lastElementChild;
             let card = document.createElement("div");
             card.classList.add("card");
             card.innerHTML = `
