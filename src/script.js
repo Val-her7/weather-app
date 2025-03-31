@@ -1,11 +1,13 @@
 import { SELECT } from "./components/constants.js";
 import { fetchCitySuggestions } from "./components/suggestion.js";
 import { fetchApiWeahter, getCoordonatesWithoutState, getCoordonatesWithState } from "./components/api.js";
-import { displayWeatherForecast } from "./components/display.js";
+import { displayWeatherForecast, changeDisplay } from "./components/display.js";
+import { createStorage, getStorage } from "./components/storage.js";
 
 //Handle of input suggestions
 const INPUT = document.getElementById("cityInput");
 const BUTTON = document.getElementById("searchCityButton");
+const LOCATION = document.getElementsByClassName("locations")[0];
 
 INPUT.addEventListener("keyup", () => {
     fetchCitySuggestions(INPUT.value);
@@ -28,7 +30,9 @@ SELECT.addEventListener("click", () => {
 
 BUTTON.addEventListener("click", async() => {
     let results = INPUT.value.match(/[^(),]+/g).map(e => e.trim());
-    
+    INPUT.value = "";
+    BUTTON.style.visibility = "hidden";
+
     let coordinates;
     if(results.length === 2) {
         coordinates = await getCoordonatesWithoutState(results[0], results[1]);
@@ -39,8 +43,29 @@ BUTTON.addEventListener("click", async() => {
     let lat = coordinates.lat;
     let lon = coordinates.lon;
     let weather = await fetchApiWeahter(lat, lon);
-    console.log(weather);
+
+    let location = document.getElementsByClassName("focus")[0];
+    location.classList.replace("focus", "unfocus");
+    document.getElementsByClassName(`${location.id}`)[0].style.display = "none";
     
+    document.getElementsByClassName("all-days")[0].style.display = "none";
+
     displayWeatherForecast(weather);
-    
+    createStorage(weather);
 })
+
+// Handle of load of the page
+
+window.onload = () => {
+    let savedWeather = getStorage();
+    displayWeatherForecast(savedWeather);
+}
+
+// Handle switching city weather
+
+LOCATION.addEventListener("click", (e) => {
+    if (e.target.tagName === "P") {
+        let spanId = e.target.parentNode.id;
+        changeDisplay(spanId);
+    }
+} )
