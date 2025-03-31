@@ -1,6 +1,6 @@
 import { SELECT } from "./components/constants.js";
 import { fetchCitySuggestions } from "./components/suggestion.js";
-import { getCoordonates, fetchApiWeahter } from "./components/api.js";
+import { fetchApiWeahter, getCoordonatesWithoutState, getCoordonatesWithState } from "./components/api.js";
 import { displayWeatherForecast } from "./components/display.js";
 
 //Handle of input suggestions
@@ -31,14 +31,16 @@ BUTTON.addEventListener("click", async() => {
     
     let coordinates;
     if(results.length === 2) {
-        coordinates = await getCoordonates(results[0], results[1]); 
+        coordinates = await getCoordonatesWithoutState(results[0], results[1]);
     }
     if(results.length === 3) {
-        coordinates = await getCoordonates(results[0], results[1], results[2]);
+        coordinates = await getCoordonatesWithState(results[0], results[1], results[2]);
     }  
     let lat = coordinates.lat;
     let lon = coordinates.lon;
     let weather = await fetchApiWeahter(lat, lon);
+    console.log(weather);
+    
     displayWeatherForecast(weather);
     
 })
