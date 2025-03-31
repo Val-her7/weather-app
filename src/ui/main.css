@@ -1,5 +1,4 @@
 .all-days {
-    border: 1px solid white;
     padding: 10px;
 }
 
@@ -35,4 +34,18 @@
     height: 10px;
     padding-top: 5px;
     color: rgb(0, 105, 148);
+}
+
+.locations {
+    border-bottom: 1px solid white;
+    padding-bottom: 15px;
+    display: flex;
+    gap: 20px;
+    overflow: auto;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.focus {
+    border-bottom: 3px solid rgb(255, 195, 0);
 }
