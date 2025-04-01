@@ -47,12 +47,12 @@ BUTTON.addEventListener("click", async() => {
     for( let city of LOCATION.children) {
         if(city.id === `${weather.city.coord.lat}-${weather.city.coord.lon}`) return;
     }
-    
+      
     let location = document.getElementsByClassName("focus")[0];
-    location.classList.replace("focus", "unfocus");
-    document.getElementsByClassName(`${location.id}`)[0].style.display = "none";
-    
-    document.getElementsByClassName("all-days")[0].style.display = "none";
+    if(location !== undefined){
+        location.classList.replace("focus", "unfocus");
+        document.getElementsByClassName(`${location.id}`)[0].style.display = "none";
+        document.getElementsByClassName("all-days")[0].style.display = "none";}
 
     displayWeatherForecast(weather);
     createStorage(weather);
