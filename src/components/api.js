@@ -2,7 +2,7 @@ import { APIKEY } from "./constants.js";
 
 async function fetchApiGeolocalisationWithState(cityName, countryCode, countryState) {
     try {
-        let request = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode},${countryState}&appid=${APIKEY}`);
+        let request = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode},${countryState}&appid=${APIKEY}`);
 
         if(!request.ok) throw new Error("Issue with the GEOLOCADE API...");
 
@@ -19,7 +19,7 @@ async function fetchApiGeolocalisationWithState(cityName, countryCode, countrySt
 
 async function fetchApiGeolocalisationWithoutState(cityName, countryCode) {
     try {
-        let request = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode}&appid=${APIKEY}`);
+        let request = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},${countryCode}&appid=${APIKEY}`);
 
         if(!request.ok) throw new Error("Issue with the GEOLOCADE API...");
 
