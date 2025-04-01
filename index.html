@@ -12,8 +12,6 @@
     <header>
       <h1>Weath<span>V</span></h1>
       <div class="weather-input">
-        <!-- <button type="button" id="currentLocationButton">
-          <i class="fa-solid fa-location-dot"></i>Current Location</button> -->
           <input type="text" id="cityInput" placeholder="Enter city name" autocomplete="off">
           <select id="citySelect" size="1"></select>
           <button type="button" id="searchCityButton">
@@ -23,11 +21,13 @@
     <main>
       <div class="locations"></div>
       <div class="cities"></div>
+      </div>
     </main>
     <footer>
 
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <script type="module" src="/src/script.js"></script>
   </body>
 </html>

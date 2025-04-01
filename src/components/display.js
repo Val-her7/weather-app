@@ -46,6 +46,79 @@ export function displayWeatherForecast(weather) {
             hourlyForecast.appendChild(card);
         }   
     }
+    let chartContainer = document.createElement("div");
+    chartContainer.classList.add("chart-container");
+    let canvaCreation = document.createElement("canvas");
+    canvaCreation.classList.add("line-chart");
+    canvaCreation.height = 200;
+    chartContainer.prepend(canvaCreation);
+    let title = document.createElement("p");
+    title.classList.add("title");
+    title.textContent = "5 Days Forecast Chart";
+    allDay.appendChild(title);
+    allDay.appendChild(chartContainer);
+    
+    let data = weather.list;
+    let weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let labels = [];
+    let temps = [];
+    for(let i of data){
+        let UtcTime = new Date(i.dt_txt)
+        let localeTime = new Date(UtcTime.getTime() + weather.city.timezone * 1000);
+        labels.push(`${weekday[localeTime.getDay()]} ${localeTime.getHours() < 10 ? `0${localeTime.getHours()}:00` : `${localeTime.getHours()}:00`}`);
+        temps.push(`${Math.round(i.main.temp - 273.15)}`);
+    }
+    Chart.register(ChartDataLabels);
+    let canva = document.getElementsByClassName("line-chart")[0];
+    let chart = new Chart(canva, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: temps,
+                fill: true,
+                backgroundColor: "rgb(255, 192, 159)",
+                borderColor: "rgb(236, 110, 76)",
+                pointStyle: "line",
+                tension: 0.3,
+                datalabels: {
+                    align: "bottom",
+                    color: "rgb(236, 110, 76)",
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: function(value) {
+                        return value + "°C";
+                    },
+                },
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false, 
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        padding: 20, 
+                    }
+                },
+                y: {
+                    ticks: {
+                        display: false, 
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                datalabels: {
+                    display: true,
+                }
+            }
+        }
+    })
 }
 
 export function changeDisplay(id) {

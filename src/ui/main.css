@@ -2,6 +2,12 @@
     padding: 10px;
 }
 
+.title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 .weather {
     width: 100%;
     border: none;
@@ -56,5 +62,20 @@
 }
 
 .date {
+    padding: 10px;
+}
+
+.chart-container {
+    width: 100%;  
+    max-height: 300px; 
+    margin: 0 10px 10px 10px;
+    overflow-x: auto; 
+    white-space: nowrap;
+    background-color: rgb(	42, 43, 45);
+}
+
+.chart-container canvas {
+    width: 3000px; 
+    height: 300px;
     padding: 10px;
 }
