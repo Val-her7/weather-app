@@ -2,8 +2,8 @@ name: Deploy Vite App to GitHub Pages
 
 on:
   push:
-    branches: 
-     -main  # Déclenche le workflow quand tu pousses sur la branche main
+    branches:
+      - main  # Déclenche le workflow quand tu pousses sur la branche main
 
 permissions:
   contents: write  # Autorise le workflow à écrire dans le repo
@@ -13,35 +13,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-       - name: Checkout du repo
-         uses: actions/checkout@v4
-            
-       - name: Installer Node.js
-         uses: actions/setup-node@v4
-         with:
-           node-version: 22
-            
-       - name: Installer les dépendances
-         run: npm install
-      
-       - name: Créer un fichier .env
-         run: |
-           echo "VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}" >> .env
+      - name: Checkout du repo
+        uses: actions/checkout@v4
 
-       - name: Construire le projet
-         run: npm run build
-  
-       - name: Vérifier les variables après le build
-         run: npm run build && cat .env
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-       - name: Configure vite
-         run: |
-              echo 'export default {
-              base: "/${{ github.event.repository.name }}/"
-              }' > vite.config.js
- 
-       - name: Déployer sur GitHub Pages
-         uses: JamesIves/github-pages-deploy-action@v4
-         with:
-           branch: gh-pages  # Déploie sur cette branche
-           folder: dist  # Dossier de build généré par Vite
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Créer un fichier .env
+        run: |
+          echo "VITE_WEATHER_API_KEY=${{ secrets.VITE_WEATHER_API_KEY }}" >> .env
+          
+      - name: Construire le projet
+        run: npm run build
+
+      - name: Vérifier les variables après le build
+        run: npm run build && cat .env
+
+      - name: Configure vite
+        run: |
+            echo 'export default {
+            base: "/${{ github.event.repository.name }}/"
+            }' > vite.config.js
+
+      - name: Déployer sur GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Déploie sur cette branche
+          folder: dist  # Dossier de build généré par Vite
