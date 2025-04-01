@@ -38,12 +38,14 @@
 
 .locations {
     border-bottom: 1px solid white;
-    padding-bottom: 15px;
     display: flex;
     gap: 20px;
     overflow: auto;
     white-space: nowrap;
-    cursor: pointer;
+    padding: 0 15px 15px 15px;
+    & span {
+        cursor: pointer;
+    }
 }
 
 .focus {
