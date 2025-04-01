@@ -2,8 +2,7 @@ name: Deploy Vite App to GitHub Pages
 
 on:
   push:
-    branches:
-      
+    branches: 
      -main  # Déclenche le workflow quand tu pousses sur la branche main
 
 permissions:
